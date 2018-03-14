@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSpaces } from '../../actions'
-import { Container, Row, Col } from 'react-grid-system'
 import SpaceCard from '../SpaceCard'
-
 
 class SpaceList extends Component {
     componentWillMount() {
@@ -22,12 +20,11 @@ class SpaceList extends Component {
       }
 
     render() {
+        const { spaceList, loading } = this.props
         return (
             <div>
-                {this.props.spaceList && this.props.spaceList.map((space, i) => (
-                    <SpaceCard key={`space-card-${i}`} spaceInfo={space} />
-                ))}
-                {this.props.loading && <p>Loading...</p>}
+                {spaceList && spaceList.map((space, i) => <SpaceCard key={`space-card-${i}`} spaceInfo={space} />)}
+                {loading && <p>Loading...</p>}
             </div>
         )
     }
